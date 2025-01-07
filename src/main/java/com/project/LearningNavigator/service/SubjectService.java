@@ -1,0 +1,5 @@
+package com.project.LearningNavigator.service;
+
+public class SubjectService {
+
+}
