@@ -8,12 +8,5 @@ import com.project.LearningNavigator.repository.StudentRepository;
 
 @Service
 public class StudentService {
-
-    @Autowired
-    private StudentRepository studentRepository;
-
-    public Student createStudent(Student student) {
-        return studentRepository.save(student);
-    }
     
 }
