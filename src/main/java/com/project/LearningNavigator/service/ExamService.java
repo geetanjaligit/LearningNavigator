@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.project.LearningNavigator.entity.Exam;
 import com.project.LearningNavigator.entity.Student;
+import com.project.LearningNavigator.entity.Subject;
 import com.project.LearningNavigator.exception.DatabaseOperationException;
 import com.project.LearningNavigator.exception.InvalidOperationException;
 import com.project.LearningNavigator.exception.ResourceNotFoundException;
@@ -97,6 +98,18 @@ public class ExamService {
         }
         catch(Exception ex){
             throw new DatabaseOperationException("Error while deleting exam with ID: "+examId, ex);
+        }
+    }
+
+    //Retrieve subject of a specific exam
+    public Subject getSubjectByExamId(Long ExamId){
+        try{
+            Exam exam=getExamById(ExamId);
+            return exam.getSubject();
+        }
+        catch(Exception ex)
+        {
+            throw new DatabaseOperationException("Error while retrieving subject for exam with id: " + ExamId, ex);
         }
     }
 

@@ -5,15 +5,18 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.project.LearningNavigator.entity.Exam;
 import com.project.LearningNavigator.entity.Subject;
 import com.project.LearningNavigator.exception.DatabaseOperationException;
 import com.project.LearningNavigator.exception.ResourceNotFoundException;
+import com.project.LearningNavigator.repository.ExamRepository;
 import com.project.LearningNavigator.repository.SubjectRepository;
 
 public class SubjectService {
 
     @Autowired
     public SubjectRepository subjectRepository;
+    public ExamRepository examRepository;
 
     //Add a subject
     public Subject createSubject(Subject subject){
@@ -71,6 +74,33 @@ public class SubjectService {
         }
         catch(Exception ex){
             throw new DatabaseOperationException("Failed to delete subject with ID: "+subjectId, ex);
+        }
+    }
+
+    //Assign exam to a subject
+    public Subject assignExamToSubject(Long subId,Exam exam){
+        try{
+            Subject subject=getSubjectById(subId);
+            exam.setSubject(subject);
+            subject.getExams().add(exam);
+            examRepository.save(exam);
+            return subjectRepository.save(subject);
+        }
+        catch(Exception ex)
+        {
+            throw new DatabaseOperationException("Error while assigning exam to a subject with Id:"+subId,ex);
+        }
+    }
+
+    //Retrieve all exams for a subject
+    public List<Exam> getExamBySubjectId(Long subId){
+        try{
+            Subject subject=getSubjectById(subId);
+            return subject.getExams();
+        }
+        catch(Exception ex)
+        {
+            throw new DatabaseOperationException("Error while retrieving exams for subject with id :"+subId,ex);
         }
     }
 
