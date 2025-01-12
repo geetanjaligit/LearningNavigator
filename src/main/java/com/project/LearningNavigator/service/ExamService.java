@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.project.LearningNavigator.entity.Exam;
 import com.project.LearningNavigator.entity.Student;
@@ -16,6 +17,7 @@ import com.project.LearningNavigator.repository.StudentRepository;
 import com.project.LearningNavigator.repository.SubjectRepository;
 import com.project.LearningNavigator.service.StudentService;
 
+@Service
 public class ExamService {
 
 

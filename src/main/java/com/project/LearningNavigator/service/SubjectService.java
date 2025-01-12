@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.project.LearningNavigator.entity.Exam;
 import com.project.LearningNavigator.entity.Subject;
@@ -12,6 +13,7 @@ import com.project.LearningNavigator.exception.ResourceNotFoundException;
 import com.project.LearningNavigator.repository.ExamRepository;
 import com.project.LearningNavigator.repository.SubjectRepository;
 
+@Service
 public class SubjectService {
 
     @Autowired
