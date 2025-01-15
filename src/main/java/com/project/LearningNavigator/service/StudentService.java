@@ -18,6 +18,7 @@ public class StudentService {
 
     @Autowired
     public StudentRepository studentRepository;
+    @Autowired
     public SubjectRepository subjectRepository;
 
     //Add a student
@@ -81,13 +82,13 @@ public class StudentService {
 
 
     //Enroll a student to a subject
-    public Student enrollStudentToSubject(Long studentId,Long subjectId){
+    public Subject enrollStudentToSubject(Long studentId,Long subjectId){
         try{
             Student student=getStudentById(studentId);
             Subject subject=subjectRepository.findById(subjectId).orElseThrow(()->new ResourceNotFoundException("Subject not found with id: "+subjectId));
             student.getEnrolledSubjects().add(subject);
             subject.getEnrolledStudents().add(student);
-            return studentRepository.save(student);
+            return subjectRepository.save(subject);
         }
         catch(Exception ex){
             throw new DatabaseOperationException("Error while enrolling student with id: "+studentId+" to subject with id: "+subjectId, ex);

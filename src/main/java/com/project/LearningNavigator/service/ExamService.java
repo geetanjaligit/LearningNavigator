@@ -23,9 +23,14 @@ public class ExamService {
 
     @Autowired
     private StudentService studentService;
+    @Autowired
     private ExamRepository examRepository;
-    public StudentRepository studentRepository;
-    public SubjectRepository subjectRepository;
+    @Autowired
+    private StudentRepository studentRepository;
+    @Autowired
+    private SubjectService subjectService;
+    @Autowired
+    private SubjectRepository subjectRepository;
 
     //Create a new exam
     public Exam createExam(Exam exam){

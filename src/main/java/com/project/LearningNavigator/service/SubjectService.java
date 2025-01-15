@@ -18,6 +18,7 @@ public class SubjectService {
 
     @Autowired
     public SubjectRepository subjectRepository;
+    @Autowired
     public ExamRepository examRepository;
 
     //Add a subject
@@ -31,20 +32,34 @@ public class SubjectService {
     }
 
     //Get a subject by id
-    public Subject getSubjectById(Long subjectId){
+    // public Subject getSubjectById(Long subjectId){
 
-        try{
-            Optional<Subject> subjectOptional=subjectRepository.findById(subjectId);
-            if(subjectOptional.isPresent())
-                return subjectOptional.get();
-            else
-               throw new ResourceNotFoundException("Subject not found with id: "+subjectId);
-        }
-        catch(Exception ex){
-            throw new DatabaseOperationException("Error while retrieving subject by ID:"+subjectId,ex);
+    //     try{
+    //         Optional<Subject> subjectOptional=subjectRepository.findById(subjectId);
+    //         if(subjectOptional.isPresent())
+    //             return subjectOptional.get();
+    //         else
+    //            throw new ResourceNotFoundException("Subject not found with id: "+subjectId);
+    //     }
+    //     catch(Exception ex){
+    //         throw new DatabaseOperationException("Error while retrieving subject by ID:"+subjectId,ex);
+    //     }
+    // }
+
+    public Subject getSubjectById(Long subjectId) {
+        try {
+            return subjectRepository.findById(subjectId)
+                .orElseThrow(() -> new ResourceNotFoundException("Subject not found with id: " + subjectId));
+        } catch (ResourceNotFoundException ex) {
+            // Specific handling for not found exception
+            throw ex;
+        } catch (Exception ex) {
+            // Handle other database-related exceptions
+            ex.printStackTrace(); // Log the exception for debugging
+            throw new DatabaseOperationException("Unexpected error while retrieving subject by ID: " + subjectId, ex);
         }
     }
-
+    
     //Get all the subjects
     public List<Subject> getAllSubjects(){
         try{
@@ -93,6 +108,7 @@ public class SubjectService {
             throw new DatabaseOperationException("Error while assigning exam to a subject with Id:"+subId,ex);
         }
     }
+    
 
     //Retrieve all exams for a subject
     public List<Exam> getExamBySubjectId(Long subId){

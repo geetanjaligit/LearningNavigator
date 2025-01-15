@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,7 +35,7 @@ public class Exam {
             strategy = GenerationType.SEQUENCE
     )
     private Long examId;
-
+    private String examName;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "student_exam_map",
@@ -49,8 +50,9 @@ public class Exam {
     )
     private List<Student> enrolledStudents;
 
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(
+    //   @ManyToOne(cascade=CascadeType.ALL)
+     @ManyToOne(fetch = FetchType.LAZY)
+     @JoinColumn(
         name = "subject_id",
         referencedColumnName = "subjectId" 
         )

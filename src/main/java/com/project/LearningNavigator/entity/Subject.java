@@ -53,6 +53,6 @@ public class Subject {
     private List<Student> enrolledStudents;
    
 
-    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Exam> exams;
 }
