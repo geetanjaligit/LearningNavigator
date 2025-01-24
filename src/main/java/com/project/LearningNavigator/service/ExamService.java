@@ -92,8 +92,11 @@ public class ExamService {
             exam.getEnrolledStudents().add(student);
             return examRepository.save(exam);
         }
+        catch (InvalidOperationException ex) {
+            throw ex; // Re-throw as it is; do not wrap it
+        }
         catch(Exception ex){
-            throw new DatabaseOperationException("Error while registering student of id "+studentId+ "for exam with Id "+examId, ex);
+            throw new DatabaseOperationException("Error while registering student of id "+studentId+ " for exam with Id "+examId, ex);
         }
     }
 

@@ -95,11 +95,12 @@ public class SubjectService {
     }
 
     //Assign exam to a subject
-    public Subject assignExamToSubject(Long subId,Exam exam){
+    public Subject assignExamToSubject(Long subId,Long examId){
         try{
             Subject subject=getSubjectById(subId);
-            exam.setSubject(subject);
+            Exam exam=examRepository.findById(examId).orElseThrow(()->new ResourceNotFoundException("Exam not found with id: "+examId));
             subject.getExams().add(exam);
+            exam.setSubject(subject);
             examRepository.save(exam);
             return subjectRepository.save(subject);
         }

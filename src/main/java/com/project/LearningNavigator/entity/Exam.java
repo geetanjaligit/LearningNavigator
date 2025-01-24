@@ -2,6 +2,8 @@ package com.project.LearningNavigator.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Exam {
     
-   @Id
+    @Id
     @SequenceGenerator(
             name = "exam_sequence",
             sequenceName = "exam_sequence",
@@ -51,10 +53,11 @@ public class Exam {
     private List<Student> enrolledStudents;
 
     //   @ManyToOne(cascade=CascadeType.ALL)
-     @ManyToOne(fetch = FetchType.LAZY)
+     @ManyToOne(fetch = FetchType.EAGER)
      @JoinColumn(
         name = "subject_id",
         referencedColumnName = "subjectId" 
         )
+    @JsonIgnore
     private Subject subject;
 }

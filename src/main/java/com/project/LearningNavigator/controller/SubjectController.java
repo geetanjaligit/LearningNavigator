@@ -64,10 +64,10 @@ public class SubjectController {
     }
 
     //Assign exam to a subject
-    @PostMapping("/{subid}/assign-exam")
-    public ResponseEntity<Subject> assignExamToSubject(@PathVariable Long subid, @RequestBody Exam exam)
+    @PostMapping("/{examId}/assign-exam/{subId}")
+    public ResponseEntity<Subject> assignExamToSubject(@PathVariable Long examId, @PathVariable Long subId)
     {
-        Subject updateSubject=subjectService.assignExamToSubject(subid, exam);
+        Subject updateSubject=subjectService.assignExamToSubject(examId, subId);
         return ResponseEntity.ok(updateSubject);
     }
 

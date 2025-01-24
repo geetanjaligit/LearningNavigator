@@ -37,11 +37,11 @@ public class Student {
     private String studentName;
 
 
-
     @ManyToMany(mappedBy = "enrolledStudents", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Subject> enrolledSubjects;
 
     @ManyToMany(mappedBy = "enrolledStudents", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Exam> registeredExams;
 }
