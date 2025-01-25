@@ -2,10 +2,8 @@ package com.project.LearningNavigator.service;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.project.LearningNavigator.entity.Exam;
 import com.project.LearningNavigator.entity.Student;
 import com.project.LearningNavigator.entity.Subject;
@@ -13,9 +11,6 @@ import com.project.LearningNavigator.exception.DatabaseOperationException;
 import com.project.LearningNavigator.exception.InvalidOperationException;
 import com.project.LearningNavigator.exception.ResourceNotFoundException;
 import com.project.LearningNavigator.repository.ExamRepository;
-import com.project.LearningNavigator.repository.StudentRepository;
-import com.project.LearningNavigator.repository.SubjectRepository;
-import com.project.LearningNavigator.service.StudentService;
 
 @Service
 public class ExamService {
@@ -25,12 +20,6 @@ public class ExamService {
     private StudentService studentService;
     @Autowired
     private ExamRepository examRepository;
-    @Autowired
-    private StudentRepository studentRepository;
-    @Autowired
-    private SubjectService subjectService;
-    @Autowired
-    private SubjectRepository subjectRepository;
 
     //Create a new exam
     public Exam createExam(Exam exam){

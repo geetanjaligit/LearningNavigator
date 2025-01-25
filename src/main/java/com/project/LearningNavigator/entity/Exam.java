@@ -38,6 +38,7 @@ public class Exam {
     )
     private Long examId;
     private String examName;
+    
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "student_exam_map",
@@ -52,7 +53,6 @@ public class Exam {
     )
     private List<Student> enrolledStudents;
 
-    //   @ManyToOne(cascade=CascadeType.ALL)
      @ManyToOne(fetch = FetchType.EAGER)
      @JoinColumn(
         name = "subject_id",

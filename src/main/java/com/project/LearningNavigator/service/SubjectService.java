@@ -30,22 +30,7 @@ public class SubjectService {
             throw new DatabaseOperationException("Error while adding subject:"+subject.getSubjectName(), ex);
         }
     }
-
-    //Get a subject by id
-    // public Subject getSubjectById(Long subjectId){
-
-    //     try{
-    //         Optional<Subject> subjectOptional=subjectRepository.findById(subjectId);
-    //         if(subjectOptional.isPresent())
-    //             return subjectOptional.get();
-    //         else
-    //            throw new ResourceNotFoundException("Subject not found with id: "+subjectId);
-    //     }
-    //     catch(Exception ex){
-    //         throw new DatabaseOperationException("Error while retrieving subject by ID:"+subjectId,ex);
-    //     }
-    // }
-
+   // Get subject by Id
     public Subject getSubjectById(Long subjectId) {
         try {
             return subjectRepository.findById(subjectId)
